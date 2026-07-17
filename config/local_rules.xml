@@ -1,0 +1,134 @@
+<!--
+==============================================================================
+ AI Honeypot Project
+ Cowrie Detection Rules
+ Author: Anmol Lohtia
+==============================================================================-->
+
+<group name="local,cowrie,">
+
+    <!-- Generic Rule (Must Stay) -->
+    <rule id="100100" level="5">
+        <decoded_as>json</decoded_as>
+        <field name="eventid">^cowrie\.</field>
+
+        <description>Cowrie Honeypot Event</description>
+
+        <group>cowrie,honeypot,ssh,</group>
+    </rule>
+
+
+    <!-- SSH Session Started -->
+    <rule id="100101" level="3">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.session\.connect$</field>
+
+        <description>SSH Connection Started</description>
+
+        <mitre>
+            <id>T1021</id>
+        </mitre>
+    </rule>
+
+
+    <!-- Login Success -->
+    <rule id="100102" level="8">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.login\.success$</field>
+
+        <description>Successful SSH Login</description>
+
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+    </rule>
+
+
+    <!-- Login Failed -->
+    <rule id="100103" level="10">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.login\.failed$</field>
+
+        <description>SSH Login Failed</description>
+
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+    </rule>
+
+
+    <!-- Command Executed -->
+    <rule id="100104" level="7">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.command\.input$</field>
+
+        <description>Command Executed Inside Honeypot</description>
+
+        <mitre>
+            <id>T1059</id>
+        </mitre>
+    </rule>
+
+
+    <!-- File Download -->
+    <rule id="100105" level="12">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.session\.file_download$</field>
+
+        <description>Malicious File Download</description>
+
+        <mitre>
+            <id>T1105</id>
+        </mitre>
+    </rule>
+
+
+    <!-- File Upload -->
+    <rule id="100106" level="12">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.session\.file_upload$</field>
+
+        <description>Attacker Uploaded File</description>
+
+        <mitre>
+            <id>T1105</id>
+        </mitre>
+    </rule>
+
+
+    <!-- Session Closed -->
+    <rule id="100107" level="3">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.session\.closed$</field>
+
+        <description>SSH Session Closed</description>
+    </rule>
+
+
+    <!-- Client Variable -->
+    <rule id="100108" level="2">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.client\.var$</field>
+
+        <description>Client Environment Variable</description>
+    </rule>
+
+
+    <!-- SSH Client Version -->
+    <rule id="100109" level="2">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.client\.version$</field>
+
+        <description>SSH Client Version Detected</description>
+    </rule>
+
+
+    <!-- Session Parameters -->
+    <rule id="100110" level="3">
+        <if_sid>100100</if_sid>
+        <field name="eventid">^cowrie\.session\.params$</field>
+
+        <description>SSH Session Parameters</description>
+    </rule>
+
+</group>
