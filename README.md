@@ -72,6 +72,7 @@ The primary objectives of this project are:
 | Ubuntu 24.04 LTS | Honeypot Server |
 | VMware Workstation | Virtualization |
 | Cowrie Honeypot | Attack Capture |
+| Wazuh SIEM | Log Collection |
 | Ollama | Local AI Engine |
 | Llama 3.2 | AI Incident Analysis |
 | Telegram Bot API | Alert Notifications |
@@ -533,6 +534,13 @@ Recommended Security Actions
 ```
 
 Immediately after the AI analysis, a Telegram notification will be sent to the administrator containing the incident summary.
+
+---
+## Optional Wazuh Integration
+
+During development, Wazuh SIEM was configured to monitor Cowrie honeypot logs by collecting events from the `cowrie.json` log file.
+
+The final implementation reads Cowrie logs directly using the Python monitoring script (`monitor.py`) for AI analysis and Telegram notifications. Therefore, Wazuh is an optional enhancement and is not required to run this project.
 
 ---
 
