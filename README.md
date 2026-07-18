@@ -728,7 +728,7 @@ Cybersecurity Enthusiast
 
 GitHub: https://github.com/anmollohtia30
 
-LinkedIn: https://www.linkedin.com/in/anmollohtia30
+LinkedIn: https://www.linkedin.com/in/anmol-lohtia
 
 
 ---
